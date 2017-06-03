@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <EditText
+        android:id="@+id/etCarPlate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:background="@color/white"
+        android:backgroundTintMode="add"
+        android:gravity="center"
+        android:hint="@string/car_plate_number"
+        android:inputType="textCapCharacters"
+        android:letterSpacing=".05"
+        android:padding="18dp"
+        android:focusable="true"
+        android:theme="@style/EditTextTheme"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="Enter your car plate number here (without space) and we'll find out your car parking fees."/>
+
+    <Button
+        style="@android:style/Widget.Material.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:elevation="1dp"
+        android:padding="12dp"
+        android:layout_marginTop="24dp"
+        android:text="Enter"
+        android:textColor="@color/white"
+        android:id="@+id/btnEnter"/>
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "834361452061",
+    "firebase_url": "https://park-e5cd7.firebaseio.com",
+    "project_id": "park-e5cd7",
+    "storage_bucket": "park-e5cd7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834361452061:android:37cec4b2e331e91c",
+        "android_client_info": {
+          "package_name": "com.example.minghan.park"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834361452061-0umokadvo3m185mvjutu8cqibo28am7m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.minghan.park",
+            "certificate_hash": "71c366cdb30cf53525a32a0df75f5fc9dfb65385"
+          }
+        },
+        {
+          "client_id": "834361452061-pou92n14as6o89gma1lbdoaffjj2uncf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwkm5CjLDN1dmSE7d-Tst5eClEjjOvUCA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834361452061-pou92n14as6o89gma1lbdoaffjj2uncf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

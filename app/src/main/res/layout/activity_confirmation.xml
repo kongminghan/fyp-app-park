@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.minghan.park.PaymentActivity"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:gravity="center"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:id="@+id/cvCC"
+            android:elevation="6dp"
+            app:cardCornerRadius="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_gravity="right"
+                        android:layout_height="56dp"
+                        android:layout_margin="12dp"
+                        android:src="@drawable/visa"
+                        android:id="@+id/ivLogo"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvCCNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:textSize="15dp"
+                    android:text="xxxx xxxx xxxx xxxx"
+                    android:layout_marginBottom="24dp"
+                    android:textColor="@color/colorTuna" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="6dp"
+                            android:text="CARD HOLDER"
+                            android:textColor="@color/colorTuna"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tvCCName"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Name"
+                            android:textColor="@color/colorTuna"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginBottom="8dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="6dp"
+                            android:text="EXPIRES"
+                            android:textColor="@color/colorTuna"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tvCCExpiry"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="09/17"
+                            android:textColor="@color/colorTuna"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginBottom="8dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.example.minghan.park.ViewPagerHeightWrapper
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:overScrollMode="never"></com.example.minghan.park.ViewPagerHeightWrapper>
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            app:ci_drawable="@drawable/circle_radius_selected"
+            app:ci_drawable_unselected="@drawable/circle_radius_unselected"
+            android:layout_marginTop="6dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="Checkout"
+        android:background="@color/colorIndigo400"
+        android:padding="24dp"
+        android:textColor="@color/white"
+        android:textScaleX="1.1"
+        android:layout_marginTop="24dp"
+        android:id="@+id/btnCheckout"/>
+
+</android.support.design.widget.CoordinatorLayout>

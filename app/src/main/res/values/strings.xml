@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Parking</string>
+    <string name="title_home">Home</string>
+    <string name="title_history">History</string>
+    <string name="title_wallet">Wallet</string>
+    <string name="pay_effortlessly">Pay Effortlessly</string>
+    <string name="car_plate_number">Car Plate Number</string>
+    <string name="tap_to_enter_car_plate_number">Tap to confirm car plate number</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_car">Parking Duration</string>
+    <string name="timer">00:00:00</string>
+    <string name="title_activity_confirmation">ConfirmationActivity</string>
+    <string name="title_activity_receipts">Receipt</string>
+    <string name="add_a_new_car_plate">Add a new car plate</string>
+
+    <string-array name="spinner_array">
+        <item>RM10.00</item>
+        <item>RM20.00</item>
+        <item>RM40.00</item>
+        <item>RM60.00</item>
+        <item>RM80.00</item>
+        <item>RM100.00</item>
+    </string-array>
+</resources>

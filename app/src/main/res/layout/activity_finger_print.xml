@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_fingerprint"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLay1"
+        android:visibility="gone"
+        android:background="@color/colorIndigo500">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/headerLayout"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="100dp"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_fingerprint_white_24dp"
+                android:id="@+id/icon"
+                android:paddingTop="2dp"
+                android:layout_marginBottom="30dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#f5f5f5"
+                android:textSize="24sp"
+                android:text="One-touch Payment"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#f5f5f5"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:id="@+id/desc"
+                android:text="Please place your fingertip on the scanner to verify your identity"
+                android:layout_margin="16dp"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:id="@+id/errorText"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:text="(Fingerprint authentication makes your payment much faster. Your device should have at least one fingerprint registered in device settings)"
+            android:layout_marginLeft="16dp"
+            android:textAlignment="center"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="26dp"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLay2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@color/colorPrimary"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_margin="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/password" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="An easy way to pay your parking fees."
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter your 6-PIN Passcode"
+                    android:textAppearance="@android:style/TextAppearance.Material.Menu"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginRight="80dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberPassword"
+                    android:maxLength="6"
+                    android:gravity="center"
+                    android:id="@+id/etPin"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
