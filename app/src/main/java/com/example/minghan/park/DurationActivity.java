@@ -63,11 +63,11 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
             .environment(CONFIG_ENVIRONMENT)
             .clientId(PAYPAL_CLIENT_ID);
 
-    long MillisecondTime, StartTime, TimeBuff, UpdateTime = 0L;
+    long MillisecondTime, StartTime = 0L;
     Handler handler;
-    int Seconds, Minutes, MilliSeconds, Hour;
-    TextView txtTimeS, txtTimeM, txtTimeH, tvAmount;
-    String carNum;
+    int Seconds, Minutes, Hour;
+    TextView txtTimeS, txtTimeM, txtTimeH, tvAmount, tvLocation;
+    String carNum, carLocation;
     Rate rate;
 
     @Override
@@ -79,11 +79,14 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
         time = intent.getStringExtra("carEntTime");
         date = intent.getStringExtra("carEntDate");
         carNum = intent.getStringExtra("carNum");
+        carLocation = intent.getStringExtra("carLocation");
 
         txtTimeS = (TextView) findViewById(R.id.txtTimeS);
         txtTimeM = (TextView) findViewById(R.id.txtTimeM);
         txtTimeH = (TextView) findViewById(R.id.txtTimeH);
         tvAmount = (TextView) findViewById(R.id.tvAmount);
+        tvLocation = (TextView) findViewById(R.id.tvLocation);
+        tvLocation.setText("You've parked you car at "+carLocation);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("rate");
@@ -99,7 +102,7 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
                     Date date1 = new Date();
                     date1 = se.parse(date + " " + time);
                     cal.setTime(date1);
-                    StartTime = (long) cal.getTimeInMillis();
+                    StartTime = cal.getTimeInMillis();
 
                     handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -124,7 +127,7 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
                             handler.postDelayed(this, 0);
 
                             if(Hour <=1){
-                                paymentAmount = String.valueOf(rate.firstHour * Hour);
+                                paymentAmount = String.valueOf((rate.firstHour * 1));
                             }else{
                                 paymentAmount = String.valueOf((rate.nextHour * (Hour-1)) + rate.firstHour);
                             }
@@ -155,7 +158,6 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ;
                 bottomSheetPayment = new BottomSheetPayment();
                 bottomSheetPayment.show(getSupportFragmentManager(), "Dialog");
             }
@@ -214,6 +216,7 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
                         history.EntTime = time;
                         history.Brand = "PayPal";
                         history.last4 = "";
+                        history.CarLocation = carLocation;
                         history.Duration = txtTimeH.getText().toString() + "h " + txtTimeM.getText().toString() + "m";
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         if (user != null) {
@@ -313,6 +316,7 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
                     history.EntTime = time;
                     history.Brand = "FOC";
                     history.last4 = "";
+                    history.CarLocation = carLocation;
                     history.Duration = txtTimeH.getText().toString() + "h " + txtTimeM.getText().toString() + "m";
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if (user != null) {
@@ -393,6 +397,7 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
                 ccIntent.putExtra("extDate", extDate);
                 ccIntent.putExtra("entDate", date);
                 ccIntent.putExtra("entTime", time);
+                ccIntent.putExtra("carLocation", carLocation);
                 ccIntent.putExtra("activity", "DurationActivity");
                 startActivity(ccIntent);
                 bottomSheetPayment.dismiss();

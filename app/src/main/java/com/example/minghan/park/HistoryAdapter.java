@@ -27,7 +27,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView tvCar, tvAmount, tvDuration, tvDate;
+        public TextView tvCar, tvAmount, tvDuration, tvDate, tvLocation;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -35,6 +35,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
             tvCar = (TextView)itemView.findViewById(R.id.txtCar);
             tvDate = (TextView)itemView.findViewById(R.id.txtDate);
             tvDuration = (TextView)itemView.findViewById(R.id.txtDuration);
+            tvLocation = (TextView)itemView.findViewById(R.id.tvLocation);
         }
     }
 
@@ -64,6 +65,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
         }
         holder.tvDuration.setText(histories.get(position).Duration);
         holder.tvAmount.setText("RM"+histories.get(position).Payment+"0");
+        holder.tvLocation.setText(histories.get(position).CarLocation);
     }
 
     @Override

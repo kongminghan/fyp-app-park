@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -63,30 +64,34 @@ public class BottomSheetDialog extends BottomSheetDialogFragment{
         final RadioButton radioPaypal = (RadioButton)view.findViewById(R.id.radioPaypal);
         final RadioButton radioCC = (RadioButton)view.findViewById(R.id.radioCC);
 
-        final Spinner spinnerAmount = (Spinner)view.findViewById(R.id.spinnerAmount);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.spinner_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerAmount.setAdapter(adapter);
+//        final Spinner spinnerAmount = (Spinner)view.findViewById(R.id.spinnerAmount);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.spinner_array, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerAmount.setAdapter(adapter);
+
+        final EditText etAmount = (EditText)view.findViewById(R.id.etAmount);
 
         Button btnPay = (Button)view.findViewById(R.id.btnPay);
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(radioPaypal.isChecked()){
-                    String selectedAmount = spinnerAmount.getSelectedItem().toString();
-                    if(selectedAmount.equals("RM10.00")){
-                        amount = 10;
-                    }else if(selectedAmount.equals("RM20.00")){
-                        amount = 20;
-                    }else if(selectedAmount.equals("RM40.00")){
-                        amount = 40;
-                    }else if(selectedAmount.equals("RM60.00")){
-                        amount = 60;
-                    }else if(selectedAmount.equals("RM80.00")){
-                        amount = 80;
-                    }else if(selectedAmount.equals("RM100.00")){
-                        amount = 100;
-                    }
+                    amount = Double.parseDouble(etAmount.getText().toString());
+
+//                    String selectedAmount = spinnerAmount.getSelectedItem().toString();
+//                    if(selectedAmount.equals("RM10.00")){
+//                        amount = 10;
+//                    }else if(selectedAmount.equals("RM20.00")){
+//                        amount = 20;
+//                    }else if(selectedAmount.equals("RM40.00")){
+//                        amount = 40;
+//                    }else if(selectedAmount.equals("RM60.00")){
+//                        amount = 60;
+//                    }else if(selectedAmount.equals("RM80.00")){
+//                        amount = 80;
+//                    }else if(selectedAmount.equals("RM100.00")){
+//                        amount = 100;
+//                    }
                     final PayPalPayment payment = new PayPalPayment(new BigDecimal(amount), "USD", "Wallet TopUp",
                             PayPalPayment.PAYMENT_INTENT_SALE);
                     new Thread(new Runnable() {
@@ -99,20 +104,22 @@ public class BottomSheetDialog extends BottomSheetDialogFragment{
                         }
                     }).start();
                 }else if(radioCC.isChecked()){
-                    String selectedAmount = spinnerAmount.getSelectedItem().toString();
-                    if(selectedAmount.equals("RM10.00")){
-                        amount = 10;
-                    }else if(selectedAmount.equals("RM20.00")){
-                        amount = 20;
-                    }else if(selectedAmount.equals("RM40.00")){
-                        amount = 40;
-                    }else if(selectedAmount.equals("RM60.00")){
-                        amount = 60;
-                    }else if(selectedAmount.equals("RM80.00")){
-                        amount = 80;
-                    }else if(selectedAmount.equals("RM100.00")){
-                        amount = 100;
-                    }
+//                    String selectedAmount = spinnerAmount.getSelectedItem().toString();
+//                    if(selectedAmount.equals("RM10.00")){
+//                        amount = 10;
+//                    }else if(selectedAmount.equals("RM20.00")){
+//                        amount = 20;
+//                    }else if(selectedAmount.equals("RM40.00")){
+//                        amount = 40;
+//                    }else if(selectedAmount.equals("RM60.00")){
+//                        amount = 60;
+//                    }else if(selectedAmount.equals("RM80.00")){
+//                        amount = 80;
+//                    }else if(selectedAmount.equals("RM100.00")){
+//                        amount = 100;
+//                    }
+                    amount = Double.parseDouble(etAmount.getText().toString());
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {

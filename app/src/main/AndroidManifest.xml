@@ -22,8 +22,10 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/parking" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
@@ -54,7 +56,6 @@
         <activity android:name="com.paypal.android.sdk.payments.FuturePaymentConsentActivity" />
         <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
         <activity android:name="io.card.payment.DataEntryActivity" />
-
         <activity
             android:name=".PaymentActivity"
             android:label="Payment Method"
@@ -66,23 +67,26 @@
         <activity android:name=".FingerPrintActivity" />
         <activity
             android:name=".PasscodeActivity"
-            android:windowSoftInputMode="stateAlwaysVisible"></activity>
+            android:windowSoftInputMode="stateAlwaysVisible" />
+
         <service
             android:name=".MyFirebaseInstanceIDService"
-            android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
         <service
             android:name=".MyFirebaseMessagingService"
-            android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".CountDownActivity"></activity>
     </application>
 
 </manifest>

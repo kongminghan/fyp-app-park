@@ -131,6 +131,7 @@ public class HistoryFragment extends Fragment{
                             history.ExtDate = cursor.getString(cursor.getColumnIndex("carExtDate"));
                             history.ExtTime = cursor.getString(cursor.getColumnIndex("carExtTime"));
                             history.Duration = cursor.getString(cursor.getColumnIndex("carDuration"));
+                            history.CarLocation = cursor.getString(cursor.getColumnIndex("carLocation"));
                             histories.add(history);
                         }while(cursor.moveToNext());
                     }

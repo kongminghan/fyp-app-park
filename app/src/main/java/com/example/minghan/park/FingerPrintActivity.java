@@ -107,6 +107,7 @@ public class FingerPrintActivity extends AppCompatActivity {
                 history.EntTime = entTime;
                 history.Brand = "In-App Wallet";
                 history.last4 = "";
+                history.CarLocation = intent.getStringExtra("carLocation");
                 history.Duration = duration;
             }
         }).start();

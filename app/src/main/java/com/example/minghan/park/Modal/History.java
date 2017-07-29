@@ -17,6 +17,7 @@ public class History {
     public String Brand;
     public String last4;
     public String Duration;
+    public String CarLocation;
 
     public History(){}
 }

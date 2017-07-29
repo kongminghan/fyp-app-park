@@ -64,7 +64,7 @@ public class PaymentActivity extends AppCompatActivity {
     ImageView ivLogo;
     TextView tvCCNum, tvCCExpiry, tvCCName, tvCCV;
     Button btnCheckout;
-    String amount, duration, carNum, extTime, extDate, entDate, entTime;
+    String amount, duration, carNum, extTime, extDate, entDate, entTime, carLocation;
     private boolean topup = false;
 
     @Override
@@ -84,6 +84,7 @@ public class PaymentActivity extends AppCompatActivity {
             extDate = intent.getStringExtra("extDate");
             entDate = intent.getStringExtra("entDate");
             entTime = intent.getStringExtra("entTime");
+            carLocation = intent.getStringExtra("carLocation");
         }else{
             topup = true;
             amount = intent.getStringExtra("amount");
@@ -225,6 +226,7 @@ public class PaymentActivity extends AppCompatActivity {
                                                                 history.Brand = json.getString("brand");
                                                                 history.last4 = json.getString("last4");
                                                                 history.Duration = duration;
+                                                                history.CarLocation = carLocation;
                                                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                                                 if(user!=null){
                                                                     FirebaseDatabase database1 = FirebaseDatabase.getInstance();

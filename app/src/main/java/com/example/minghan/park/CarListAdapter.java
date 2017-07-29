@@ -1,5 +1,6 @@
 package com.example.minghan.park;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.minghan.park.Modal.Car;
+import com.example.minghan.park.Modal.Record;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +29,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by MingHan on 5/23/2017.
@@ -116,6 +121,7 @@ public class CarListAdapter extends ArrayAdapter<String> {
             progressDialog.show();
 
             final Car[] receivedCar = {new Car()};
+
             final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("car");
             try {
                 Query query = databaseReference.child(plate);
@@ -135,11 +141,9 @@ public class CarListAdapter extends ArrayAdapter<String> {
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-
                                     CarDB carDB = new CarDB(context);
                                     if (carDB.getSearchById(plate).moveToNext())
                                         carDB.updateSearch(plate);
-
 //                                    getActivity().runOnUiThread(new Runnable() {
 //                                        @Override
 //                                        public void run() {
@@ -154,9 +158,68 @@ public class CarListAdapter extends ArrayAdapter<String> {
                             }).start();
 
                             if (receivedCar[0].getStatus() != null) {
-                                paid = true;
-                                progressDialog.dismiss();
-                                Toast.makeText(context, "Great news! Your parking fee has been paid.", Toast.LENGTH_SHORT).show();
+                                if(receivedCar[0].getStatus().equals("Paid")){
+                                    paid = true;
+                                    Query query1 = FirebaseDatabase.getInstance().getReference("record").child(plate).child("record").limitToLast(1);
+                                    query1.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            Record record = new Record();
+                                            for(DataSnapshot recordSnapshot : dataSnapshot.getChildren())
+                                                record = recordSnapshot.getValue(Record.class);
+                                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                                            try{
+                                                Date date = simpleDateFormat.parse(record.ExtDate+" "+record.ExtTime);
+                                                Date now = new Date();
+                                                if(now.getTime() - date.getTime() >= 20*60*1000){
+                                                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("car")
+                                                            .child(plate);
+                                                    reference.child("LastEnterTime").setValue(record.ExtTime);
+                                                    reference.child("LastEnterDate").setValue(record.ExtDate);
+                                                    reference.child("Status").setValue("");
+                                                    new Thread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            Intent intent = new Intent(context, CountDownActivity.class);
+                                                            intent.putExtra("carNum", receivedCar[0].getCarNumber());
+                                                            intent.putExtra("carEntTime", receivedCar[0].getLastEnterTime());
+                                                            intent.putExtra("carEntDate", receivedCar[0].getLastEnterDate());
+                                                            intent.putExtra("carLocation", receivedCar[0].getCarLocation());
+                                                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                                            context.startActivity(intent);
+                                                            ((Activity)context).finish();
+                                                        }
+                                                    }).start();
+
+                                                    //Toast.makeText(context, "You've exceeded the allowable time after payment. Please make your payment. Thank You.", Toast.LENGTH_SHORT).show();
+                                                }else{
+                                                    //Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(context, CountDownActivity.class);
+                                                    long diff = now.getTime() - date.getTime();
+                                                    intent.putExtra("DIFF_TIME", diff);
+                                                    intent.putExtra("carNum", receivedCar[0].getCarNumber());
+                                                    intent.putExtra("carEntTime", receivedCar[0].getLastEnterTime());
+                                                    intent.putExtra("carEntDate", receivedCar[0].getLastEnterDate());
+                                                    intent.putExtra("carLocation", receivedCar[0].getCarLocation());
+                                                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                                    context.startActivity(intent);
+                                                    ((Activity)context).finish();
+                                                }
+                                            }catch (ParseException e){
+                                                e.printStackTrace();
+                                            }
+                                            progressDialog.dismiss();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {}
+                                    });
+
+                                } else if(receivedCar[0].getStatus().equals("Left")){
+                                    paid = true;
+                                    progressDialog.dismiss();
+                                    Toast.makeText(context, "Great news! Your parking fee has been paid.", Toast.LENGTH_SHORT).show();
+                                }
                             }
 
                             if (found[0] == true && !paid) {
@@ -168,6 +231,7 @@ public class CarListAdapter extends ArrayAdapter<String> {
                                         intent.putExtra("carNum", receivedCar[0].getCarNumber());
                                         intent.putExtra("carEntTime", receivedCar[0].getLastEnterTime());
                                         intent.putExtra("carEntDate", receivedCar[0].getLastEnterDate());
+                                        intent.putExtra("carLocation", receivedCar[0].getCarLocation());
                                         context.startActivity(intent);
                                     }
                                 }).start();

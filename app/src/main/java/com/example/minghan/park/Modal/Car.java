@@ -13,6 +13,7 @@ public class Car {
     private String Status;
     private Long timestamp;
     private String CMToken;
+    private String CarLocation;
 
 
     public Car(){}
@@ -69,5 +70,13 @@ public class Car {
 
     public void setCMToken(String CMToken) {
         this.CMToken = CMToken;
+    }
+
+    public String getCarLocation() {
+        return CarLocation;
+    }
+
+    public void setCarLocation(String location) {
+        CarLocation = location;
     }
 }

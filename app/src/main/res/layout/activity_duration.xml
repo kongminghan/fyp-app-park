@@ -33,20 +33,23 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <com.skyfishjy.library.RippleBackground
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/content"
-            app:rb_color="#303F9F"
-            app:rb_radius="40dp"
-            app:rb_rippleAmount="3"
-            app:rb_duration="3000"
-            app:rb_scale="10"
             android:background="#2196F3"
             android:layout_gravity="center"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/tvLocation"
+                android:text="You've parked you car at Sunway Pyramid"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -122,7 +125,7 @@
 
             </LinearLayout>
 
-        </com.skyfishjy.library.RippleBackground>
+        </LinearLayout>
 
     </LinearLayout>
 

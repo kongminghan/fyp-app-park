@@ -116,7 +116,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
                     DatabaseReference reference = database.getReference("history").child(user.getUid());
                     reference.push().setValue(history);
 
-                    WalletHistory walletHistory = new WalletHistory();
+                    final WalletHistory walletHistory = new WalletHistory();
                     walletHistory.amount = history.Payment;
                     walletHistory.dateTime = history.ExtDate + " " +history.ExtTime;
                     walletHistory.desc = "Parking fees";
@@ -128,7 +128,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
                         @Override
                         public void run() {
                             Intent intent = new Intent(context, ReceiptsActivity.class);
-                            intent.putExtra("amount", history.Payment);
+                            intent.putExtra("amount", walletHistory.amount+"");
                             intent.putExtra("duration", history.Duration);
                             intent.putExtra("last4", history.last4);
                             intent.putExtra("brand", history.Brand);

@@ -23,7 +23,7 @@ public class CarDB extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS record(record_id INTEGER PRIMARY KEY AUTOINCREMENT, carNum VARCHAR, carAmount VARCHAR, carEntDate VARCHAR, carEntTime VARCHAR, carExtDate VARCHAR, carExtTime VARCHAR, carDuration VARCHAR);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS record(record_id INTEGER PRIMARY KEY AUTOINCREMENT, carNum VARCHAR, carAmount VARCHAR, carEntDate VARCHAR, carEntTime VARCHAR, carExtDate VARCHAR, carExtTime VARCHAR, carDuration VARCHAR, carLocation VARCHAR);");
         db.execSQL("CREATE TABLE IF NOT EXISTS searchRecord(record_id INTEGER PRIMARY KEY AUTOINCREMENT, carNum VARCHAR, searchDate DATETIME);");
     }
 
@@ -61,6 +61,7 @@ public class CarDB extends SQLiteOpenHelper{
         contentValues.put("carExtDate", history.ExtDate);
         contentValues.put("carExtTime", history.ExtTime);
         contentValues.put("carDuration", history.Duration);
+        contentValues.put("carLocation", history.CarLocation);
         db.insert("record", null, contentValues);
     }
 

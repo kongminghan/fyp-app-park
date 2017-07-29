@@ -24,36 +24,15 @@
         android:layout_marginRight="16dp"
         android:text="Please choose your payment method and select amount you would like to add."/>
 
-    <Spinner
-        style="@style/Widget.AppCompat.Spinner.Underlined"
-        android:layout_width="match_parent"
-        android:id="@+id/spinnerAmount"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="12dp"/>
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp">
-
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioPaypal"
-            android:text="Pay with PayPal"
-            android:theme="@style/MyRadioButton" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioCC"
-            android:text="Pay with Credit Card"
-            android:theme="@style/MyRadioButton" />
-
-    </RadioGroup>
+    <!--<Spinner-->
+        <!--style="@style/Widget.AppCompat.Spinner.Underlined"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:id="@+id/spinnerAmount"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:spinnerMode="dropdown"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:layout_marginTop="12dp"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,26 +40,71 @@
         android:orientation="horizontal"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="right">
+        android:layout_marginTop="12dp">
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Close"
-            android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/btnClose"
-            android:layout_marginRight="12dp"/>
+            android:text="RM"
+            android:layout_marginRight="10dp"/>
 
-        <Button
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:text="Pay now"
-            android:background="@color/colorIndigo500"
-            android:textColor="@color/white"
-            android:id="@+id/btnPay"
-            android:foreground="?android:attr/selectableItemBackground"/>
+            android:inputType="numberDecimal"
+            android:gravity="center"
+            android:text="10"
+            android:id="@+id/etAmount"/>
 
     </LinearLayout>
+
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioPaypal"
+        android:text="Pay with PayPal"
+        android:theme="@style/MyRadioButton" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioCC"
+        android:text="Pay with Credit Card"
+        android:theme="@style/MyRadioButton" />
+
+</RadioGroup>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="16dp"
+    android:gravity="right">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Close"
+        android:background="?android:attr/selectableItemBackground"
+        android:id="@+id/btnClose"
+        android:layout_marginRight="12dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pay now"
+        android:background="@color/colorIndigo500"
+        android:textColor="@color/white"
+        android:id="@+id/btnPay"
+        android:foreground="?android:attr/selectableItemBackground"/>
+
+</LinearLayout>
 
 </LinearLayout>

@@ -8,14 +8,15 @@ import java.util.HashMap;
 
 public class Record {
     public String CarNumber;
-    public String EntDate;
-    public String EntTime;
+    public String LastEnterDate;
+    public String LastEnterTime;
     public String ExtDate;
     public String ExtTime;
     public double Payment;
     public String Status;
     public float Rating;
     public String Brand;
+    public String CarLocation;
 
     public Record(){}
 }
