@@ -192,7 +192,6 @@ public class CarListAdapter extends ArrayAdapter<String> {
 
                                                     //Toast.makeText(context, "You've exceeded the allowable time after payment. Please make your payment. Thank You.", Toast.LENGTH_SHORT).show();
                                                 }else{
-                                                    //Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show();
                                                     Intent intent = new Intent(context, CountDownActivity.class);
                                                     long diff = now.getTime() - date.getTime();
                                                     intent.putExtra("DIFF_TIME", diff);
