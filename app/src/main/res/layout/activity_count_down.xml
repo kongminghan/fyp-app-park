@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_margin="16dp"
-                android:textColor="#C62828"
+                android:textColor="@color/colorPrimaryDark"
                 android:visibility="gone"
                 android:text="Please exit the parking lot within the allowable time."/>
 

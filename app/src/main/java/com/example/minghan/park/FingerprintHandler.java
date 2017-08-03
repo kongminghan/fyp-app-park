@@ -86,19 +86,19 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 balance = dataSnapshot.getValue(Double.class);
-                if(history.Payment < balance){
+                if (history.Payment < balance) {
                     HashMap<String, Object> totalAmount = new HashMap<>();
                     totalAmount.put("amount", history.Payment);
                     totalAmount.put("brand", history.Brand);
                     totalAmount.put("timestamp", ServerValue.TIMESTAMP);
                     totalAmount.put("carNumber", history.CarNumber);
-                    database.getReference("stat").push().setValue(totalAmount);
+                    database.getReference("stat").child(history.CarLocation).push().setValue(totalAmount);
 
                     final Query query = database.getReference("record").child(history.CarNumber).child("record").limitToLast(1);
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                                 // TODO: handle the post
                                 DatabaseReference ref = postSnapshot.getRef();
                                 ref.child("Status").setValue("Paid");
@@ -110,7 +110,8 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
                         }
 
                         @Override
-                        public void onCancelled(DatabaseError databaseError) {}
+                        public void onCancelled(DatabaseError databaseError) {
+                        }
                     });
 
                     DatabaseReference reference = database.getReference("history").child(user.getUid());
@@ -118,29 +119,29 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
                     final WalletHistory walletHistory = new WalletHistory();
                     walletHistory.amount = history.Payment;
-                    walletHistory.dateTime = history.ExtDate + " " +history.ExtTime;
+                    walletHistory.dateTime = history.ExtDate + " " + history.ExtTime;
                     walletHistory.desc = "Parking fees";
                     DatabaseReference reference1 = database.getReference("wallet").child(user.getUid());
                     reference1.child("history").push().setValue(walletHistory);
-                    reference1.child("balance").setValue(balance-walletHistory.amount);
+                    reference1.child("balance").setValue(balance - walletHistory.amount);
 
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             Intent intent = new Intent(context, ReceiptsActivity.class);
-                            intent.putExtra("amount", walletHistory.amount+"");
+                            intent.putExtra("amount", walletHistory.amount + "");
                             intent.putExtra("duration", history.Duration);
                             intent.putExtra("last4", history.last4);
                             intent.putExtra("brand", history.Brand);
                             intent.putExtra("carNum", history.CarNumber);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                             context.startActivity(intent);
-                            ((Activity)context).finish();
+                            ((Activity) context).finish();
                         }
                     }).start();
-                }else{
+                } else {
                     Toast.makeText(context, "You have insufficient balance. Please topup and try again.", Toast.LENGTH_SHORT).show();
-                    ((Activity)context).finish();
+                    ((Activity) context).finish();
                 }
             }
 
@@ -152,11 +153,11 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     }
 
 
-    public void update(String e, Boolean success){
-        TextView textView = (TextView) ((Activity)context).findViewById(R.id.errorText);
+    public void update(String e, Boolean success) {
+        TextView textView = (TextView) ((Activity) context).findViewById(R.id.errorText);
         textView.setText(e);
-        if(success){
-            textView.setTextColor(ContextCompat.getColor(context,R.color.white));
+        if (success) {
+            textView.setTextColor(ContextCompat.getColor(context, R.color.white));
         }
     }
 }

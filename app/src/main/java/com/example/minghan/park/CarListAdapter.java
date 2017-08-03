@@ -187,7 +187,7 @@ public class CarListAdapter extends ArrayAdapter<String> {
                                                             intent.putExtra("carLocation", receivedCar[0].getCarLocation());
                                                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                             context.startActivity(intent);
-                                                            ((Activity)context).finish();
+//                                                            ((Activity)context).finish();
                                                         }
                                                     }).start();
 
@@ -203,7 +203,7 @@ public class CarListAdapter extends ArrayAdapter<String> {
                                                     intent.putExtra("carLocation", receivedCar[0].getCarLocation());
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                     context.startActivity(intent);
-                                                    ((Activity)context).finish();
+//                                                    ((Activity)context).finish();
                                                 }
                                             }catch (ParseException e){
                                                 e.printStackTrace();

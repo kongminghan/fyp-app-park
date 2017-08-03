@@ -306,7 +306,7 @@ public class MainFragment extends Fragment {
                                                             intent.putExtra("carLocation", receivedCar.getCarLocation());
                                                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                             getActivity().startActivity(intent);
-                                                            getActivity().finish();
+//                                                            getActivity().finish();
                                                         }
                                                     }).start();
 
@@ -322,7 +322,7 @@ public class MainFragment extends Fragment {
                                                     intent.putExtra("carLocation", receivedCar.getCarLocation());
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                     getActivity().startActivity(intent);
-                                                    getActivity().finish();
+//                                                    getActivity().finish();
                                                 }
                                             } catch (ParseException e) {
                                                 e.printStackTrace();

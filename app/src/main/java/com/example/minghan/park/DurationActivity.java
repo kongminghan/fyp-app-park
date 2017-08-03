@@ -89,7 +89,7 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
         tvLocation.setText("You've parked you car at "+carLocation);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("rate");
+        DatabaseReference reference = database.getReference("user").child(carLocation).child("rate");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -181,7 +181,7 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
                         totalAmount.put("brand", "PayPal");
                         totalAmount.put("timestamp", ServerValue.TIMESTAMP);
                         totalAmount.put("carNumber", carNum);
-                        database.getReference("stat").push().setValue(totalAmount);
+                        database.getReference("stat").child(carLocation).push().setValue(totalAmount);
 
                         Query query = database.getReference("record").child(carNum).child("record").limitToLast(1);
                         query.addListenerForSingleValueEvent(new ValueEventListener() {

@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.concurrent.TimeUnit;
 
@@ -32,28 +31,34 @@ public class CountDownActivity extends AppCompatActivity {
         tvMins = (TextView)findViewById(R.id.txtTimeM);
         tvAlert = (TextView) findViewById(R.id.tvAlert);
         tvRemind = (TextView) findViewById(R.id.tvRemind);
-        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fabPay);
+        final FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fabPay);
+        fab.setVisibility(View.GONE);
 
         try{
 //            long diff = Long.parseLong(intent.getStringExtra("time"));
             long a = bundle.getLong("DIFF_TIME");
-            long left = (20*60*1000)-a;
-            tvRemind.setVisibility(View.VISIBLE);
-            new CountDownTimer(left, 1000) {
-                public void onTick(long millisUntilFinished) {
-                    tvMins.setText(""+TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60);
-                    tvSeconds.setText(""+TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60);
-                }
+            if(a>0){
+                long left = (20*60*1000)-a;
+                tvRemind.setVisibility(View.VISIBLE);
+                new CountDownTimer(left, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        tvMins.setText(""+TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60);
+                        tvSeconds.setText(""+TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60);
+                    }
 
-                public void onFinish() {
-                    tvSeconds.setText("00");
-                    tvAlert.setVisibility(View.VISIBLE);
-                    tvRemind.setVisibility(View.GONE);
-                }
-            }.start();
+                    public void onFinish() {
+                        tvSeconds.setText("00");
+                        tvAlert.setVisibility(View.VISIBLE);
+                        tvRemind.setVisibility(View.GONE);
+                        fab.setVisibility(View.VISIBLE);
+                    }
+                }.start();
+            }else{
+                tvAlert.setVisibility(View.VISIBLE);
+                tvRemind.setVisibility(View.GONE);
+                fab.setVisibility(View.VISIBLE);
+            }
         }catch (Exception e){
-            tvAlert.setVisibility(View.VISIBLE);
-            tvRemind.setVisibility(View.GONE);
 //            Toast.makeText(this, intent.getStringExtra("time"), Toast.LENGTH_SHORT).show();
 //            new CountDownTimer(120000, 1000) {
 //

@@ -189,7 +189,7 @@ public class PaymentActivity extends AppCompatActivity {
                                                                 totalAmount.put("brand", json.getString("brand"));
                                                                 totalAmount.put("timestamp", ServerValue.TIMESTAMP);
                                                                 totalAmount.put("carNumber", carNum);
-                                                                database.getReference("stat").push().setValue(totalAmount);
+                                                                database.getReference("stat").child(carLocation).push().setValue(totalAmount);
 
                                                                 final Query query = database.getReference("record").child(carNum).child("record").limitToLast(1);
                                                                 query.addListenerForSingleValueEvent(new ValueEventListener() {
