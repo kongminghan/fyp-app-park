@@ -187,7 +187,6 @@ public class CarListAdapter extends ArrayAdapter<String> {
                                                             intent.putExtra("carLocation", receivedCar[0].getCarLocation());
                                                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                             context.startActivity(intent);
-//                                                            ((Activity)context).finish();
                                                         }
                                                     }).start();
 
