@@ -234,6 +234,7 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
                                 .putExtra("last4", " ")
                                 .putExtra("duration", txtTimeH.getText().toString() + "h " + txtTimeM.getText().toString() + "m")
                                 .putExtra("carNum", carNum)
+                                .putExtra("carLocation", carLocation)
                                 .putExtra("amount", paymentAmount));
                         finish();
 

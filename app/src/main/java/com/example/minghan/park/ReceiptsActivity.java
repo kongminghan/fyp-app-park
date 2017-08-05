@@ -45,8 +45,10 @@ public class ReceiptsActivity extends AppCompatActivity {
         final TextView tvRRate = (TextView)findViewById(R.id.tvRRate);
         final TextView tvRRate2 = (TextView)findViewById(R.id.tvRRate2);
 
+        final Intent intent = getIntent();
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference("rate").addListenerForSingleValueEvent(new ValueEventListener() {
+        database.getReference("user").child(intent.getStringExtra("carLocation")).child("rate").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DecimalFormat df = new DecimalFormat("#.00");
@@ -61,11 +63,10 @@ public class ReceiptsActivity extends AppCompatActivity {
             }
         });
 
-        final Intent intent = getIntent();
         tvDuration.setText(intent.getStringExtra("duration"));
         tvCC.setText(intent.getStringExtra("brand") + " ends with " +intent.getStringExtra("last4"));
         tvTotal.setText("RM"+intent.getStringExtra("amount")+"0");
-        tvCarNum.setText(intent.getStringExtra("carNum"));
+        tvCarNum.setText(intent.getStringExtra("carNum") + " - " + intent.getStringExtra("carLocation"));
 
         if(intent.getStringExtra("brand").equals("Visa")){
             ivcc.setImageResource(R.drawable.visa1);

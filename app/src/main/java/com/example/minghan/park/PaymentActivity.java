@@ -247,6 +247,7 @@ public class PaymentActivity extends AppCompatActivity {
                                                                             intent.putExtra("last4", json.getString("last4"));
                                                                             intent.putExtra("brand", json.getString("brand"));
                                                                             intent.putExtra("carNum", carNum);
+                                                                            intent.putExtra("carLocation",carLocation);
                                                                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                                             startActivity(intent);
                                                                             finish();

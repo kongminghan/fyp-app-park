@@ -134,6 +134,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
                             intent.putExtra("last4", history.last4);
                             intent.putExtra("brand", history.Brand);
                             intent.putExtra("carNum", history.CarNumber);
+                            intent.putExtra("carLocation",history.CarLocation);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                             context.startActivity(intent);
                             ((Activity) context).finish();
