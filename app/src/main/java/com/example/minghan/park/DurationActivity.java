@@ -129,7 +129,7 @@ public class DurationActivity extends AppCompatActivity implements BottomSheetIn
                             if(Hour <=1){
                                 paymentAmount = String.valueOf((rate.firstHour * 1));
                             }else{
-                                paymentAmount = String.valueOf((rate.nextHour * (Hour-1)) + rate.firstHour);
+                                paymentAmount = String.valueOf((rate.nextHour * (Hour)) + rate.firstHour);
                             }
                             tvAmount.setText("RM"+paymentAmount+"0 only");
                         }
