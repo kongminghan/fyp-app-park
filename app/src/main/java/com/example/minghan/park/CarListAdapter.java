@@ -177,6 +177,7 @@ public class CarListAdapter extends ArrayAdapter<String> {
                                                     reference.child("LastEnterTime").setValue(record.ExtTime);
                                                     reference.child("LastEnterDate").setValue(record.ExtDate);
                                                     reference.child("Status").setValue("");
+                                                    final Record finalRecord = record;
                                                     new Thread(new Runnable() {
                                                         @Override
                                                         public void run() {
@@ -185,6 +186,8 @@ public class CarListAdapter extends ArrayAdapter<String> {
                                                             intent.putExtra("carEntTime", receivedCar[0].getLastEnterTime());
                                                             intent.putExtra("carEntDate", receivedCar[0].getLastEnterDate());
                                                             intent.putExtra("carLocation", receivedCar[0].getCarLocation());
+                                                            intent.putExtra("extTime", finalRecord.ExtTime);
+                                                            intent.putExtra("extDate", finalRecord.ExtDate);
                                                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                             context.startActivity(intent);
                                                         }
@@ -199,6 +202,8 @@ public class CarListAdapter extends ArrayAdapter<String> {
                                                     intent.putExtra("carEntTime", receivedCar[0].getLastEnterTime());
                                                     intent.putExtra("carEntDate", receivedCar[0].getLastEnterDate());
                                                     intent.putExtra("carLocation", receivedCar[0].getCarLocation());
+                                                    intent.putExtra("extTime", record.ExtTime);
+                                                    intent.putExtra("extDate", record.ExtDate);
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                     context.startActivity(intent);
                                                 }

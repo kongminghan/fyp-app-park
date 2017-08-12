@@ -88,7 +88,7 @@ public class PaymentActivity extends AppCompatActivity {
         }else{
             topup = true;
             amount = intent.getStringExtra("amount");
-            Toast.makeText(this, amount, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, amount, Toast.LENGTH_SHORT).show();
         }
 
         mViewPager = (ViewPagerHeightWrapper)findViewById(R.id.viewPager);

@@ -296,6 +296,7 @@ public class MainFragment extends Fragment {
                                                     reference.child("LastEnterTime").setValue(record.ExtTime);
                                                     reference.child("LastEnterDate").setValue(record.ExtDate);
                                                     reference.child("Status").setValue("");
+                                                    final Record finalRecord = record;
                                                     new Thread(new Runnable() {
                                                         @Override
                                                         public void run() {
@@ -304,6 +305,8 @@ public class MainFragment extends Fragment {
                                                             intent.putExtra("carEntTime", receivedCar.getLastEnterTime());
                                                             intent.putExtra("carEntDate", receivedCar.getLastEnterDate());
                                                             intent.putExtra("carLocation", receivedCar.getCarLocation());
+                                                            intent.putExtra("extTime", finalRecord.ExtTime);
+                                                            intent.putExtra("extDate", finalRecord.ExtDate);
                                                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                             getActivity().startActivity(intent);
 //                                                            getActivity().finish();
@@ -320,6 +323,8 @@ public class MainFragment extends Fragment {
                                                     intent.putExtra("carEntTime", receivedCar.getLastEnterTime());
                                                     intent.putExtra("carEntDate", receivedCar.getLastEnterDate());
                                                     intent.putExtra("carLocation", receivedCar.getCarLocation());
+                                                    intent.putExtra("extTime", record.ExtTime);
+                                                    intent.putExtra("extDate", record.ExtDate);
                                                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                                     getActivity().startActivity(intent);
 //                                                    getActivity().finish();

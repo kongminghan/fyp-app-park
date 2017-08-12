@@ -7,13 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.concurrent.TimeUnit;
 
 public class CountDownActivity extends AppCompatActivity {
 
     private TextView tvSeconds, tvMins, tvAlert, tvRemind;
-    private String carNum, carLocation, time, date;
+    private String carNum, carLocation, time, date, extTime, extDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,8 @@ public class CountDownActivity extends AppCompatActivity {
         date = bundle.getString("carEntDate");
         carNum = bundle.getString("carNum");
         carLocation = bundle.getString("carLocation");
+        extTime = bundle.getString("extTime");
+        extDate = bundle.getString("extDate");
 
         tvSeconds = (TextView)findViewById(R.id.txtTimeS);
         tvMins = (TextView)findViewById(R.id.txtTimeM);
@@ -76,9 +79,10 @@ public class CountDownActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CountDownActivity.this, DurationActivity.class);
+//                Toast.makeText(CountDownActivity.this, extTime, Toast.LENGTH_SHORT).show();
                 intent.putExtra("carNum", carNum);
-                intent.putExtra("carEntTime", time);
-                intent.putExtra("carEntDate", date);
+                intent.putExtra("carEntTime", extTime);
+                intent.putExtra("carEntDate", extDate);
                 intent.putExtra("carLocation", carLocation);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);

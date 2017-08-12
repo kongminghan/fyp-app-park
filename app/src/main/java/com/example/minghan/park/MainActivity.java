@@ -56,22 +56,35 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         });
 
         if(savedInstanceState != null){
+
+            if(getIntent()!=null){
+                boolean topup = getIntent().getBooleanExtra("topup", false);
+                if(topup){
+                    menuItem = bottomNavigation.getMenu().getItem(2);
+                    selectFragment(menuItem);
+                    bottomNavigation.getMenu().getItem(2).setChecked(true);
+                    return;
+                }
+            }
+
             mSelectedItem = savedInstanceState.getInt(SELECTED_ITEM, 0);
             menuItem = bottomNavigation.getMenu().findItem(mSelectedItem);
         } else{
+
+            if(getIntent()!=null){
+                boolean topup = getIntent().getBooleanExtra("topup", false);
+                if(topup){
+                    menuItem = bottomNavigation.getMenu().getItem(2);
+                    selectFragment(menuItem);
+                    bottomNavigation.getMenu().getItem(2).setChecked(true);
+                    return;
+                }
+            }
+
             menuItem = bottomNavigation.getMenu().getItem(0);
         }
         selectFragment(menuItem);
         bottomNavigation.getMenu().getItem(0).setChecked(true);
-
-        if(getIntent()!=null){
-            boolean topup = getIntent().getBooleanExtra("topup", false);
-            if(topup){
-                menuItem = bottomNavigation.getMenu().getItem(2);
-                selectFragment(menuItem);
-                bottomNavigation.getMenu().getItem(2).setChecked(true);
-            }
-        }
 
         new Thread(new Runnable() {
             @Override
