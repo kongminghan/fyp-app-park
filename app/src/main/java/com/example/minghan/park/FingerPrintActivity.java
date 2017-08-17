@@ -183,7 +183,7 @@ public class FingerPrintActivity extends AppCompatActivity {
                                                             @Override
                                                             public void run() {
                                                                 Intent intent = new Intent(FingerPrintActivity.this, ReceiptsActivity.class);
-                                                                intent.putExtra("amount", history.Payment);
+                                                                intent.putExtra("amount", history.Payment+"");
                                                                 intent.putExtra("duration", history.Duration);
                                                                 intent.putExtra("last4", history.last4);
                                                                 intent.putExtra("brand", history.Brand);
