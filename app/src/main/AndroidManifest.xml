@@ -70,17 +70,13 @@
             android:windowSoftInputMode="stateAlwaysVisible" />
 
         <service
-            android:name=".MyFirebaseInstanceIDService"
-            android:enabled="true"
-            android:exported="true">
+            android:name=".MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name=".MyFirebaseMessagingService"
-            android:enabled="true"
-            android:exported="true">
+            android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
